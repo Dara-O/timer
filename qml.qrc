@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>WindowBase.qml</file>
+        <file>fonts/Montserrat-Light.otf</file>
+        <file>fonts/Montserrat-Medium.otf</file>
+        <file>SelectionButton.qml</file>
+        <file>TimerFace.qml</file>
+        <file>ControlPanel.qml</file>
+        <file>ControlButton.qml</file>
+        <file>sounds/alarm.wav</file>
+    </qresource>
+</RCC>

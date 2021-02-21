@@ -162,6 +162,10 @@ Rectangle {
                 text = arrowDownDecrement(text)
             }
         }
+
+        onFocusChanged: {
+            focus ? selectAll() : null
+        }
     }
 
     Text {
@@ -181,7 +185,6 @@ Rectangle {
             family: "Montserrat Light"
             pixelSize: 99
         }
-
 
     }
 
@@ -230,6 +233,10 @@ Rectangle {
             {
                 text = arrowDownDecrement(text)
             }
+        }
+
+        onFocusChanged: {
+            focus ? selectAll() : null
         }
     }
 
@@ -292,6 +299,10 @@ Rectangle {
             {
                 text = arrowDownDecrement(text)
             }
+        }
+
+        onFocusChanged: {
+            focus ? selectAll() : null
         }
     }
 

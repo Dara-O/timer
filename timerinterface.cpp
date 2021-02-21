@@ -1,5 +1,4 @@
 #include "timerinterface.h"
-#include "QDebug"
 
 void TimerInterface::updateTimerFace()
 {

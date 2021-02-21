@@ -12,6 +12,7 @@ Window {
     // Removing the title Bar
     flags: Qt.FramelessWindowHint | Qt.Window
 
+    // for interfacing with "timerface" backend
     signal stopwatchState()
     signal countdownState()
 
@@ -54,6 +55,7 @@ Window {
                     state: "selected"
                 }
 
+                // this property may be affected by another function in TimerFace
                 PropertyChanges {
                     target: timerFace
                     state: "editable"
@@ -68,6 +70,7 @@ Window {
                 rootWindow.stopwatchState()
             else if(state === "countdown")
                 rootWindow.countdownState()
+
         }
 
         // Title Bar dragging

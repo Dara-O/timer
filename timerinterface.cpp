@@ -1,4 +1,5 @@
 #include "timerinterface.h"
+#include "QDebug"
 
 void TimerInterface::updateTimerFace()
 {
@@ -99,9 +100,13 @@ void TimerInterface::updateTime()
         {
             //TODO: Play sound and disable the startButton, and stop the timer
             resetTimer();
+
             QMetaObject::invokeMethod(m_controPanel, "disableStart");
 
             m_alarm.play();
+
+            // prevent the user from setting the time while the alarm is ringing
+            QMetaObject::invokeMethod(m_timerFace, "makeUneditable");
 
             //Sets the start button to display "Start"
             QMetaObject::invokeMethod(m_controPanel, "resetControlPanel");
@@ -116,16 +121,28 @@ void TimerInterface::startTimer()
     if(m_state == STOPWATCH)
         resetTimer();
 
+    // if state is countdown, and the timer has be started, make the timerface uneditable
+    if(m_state == COUNTDOWN)
+        QMetaObject::invokeMethod(m_timerFace, "makeUneditable");
+
     m_timerEngine.start();
 }
 
 void TimerInterface::pauseTimer()
 {
+    // make the timerface editable when the timer has been paused
+    if(m_state == COUNTDOWN)
+        QMetaObject::invokeMethod(m_timerFace, "makeEditable");
     m_timerEngine.stop();
 }
 
 void TimerInterface::continueTimer()
 {
+    // if state is countdown, and the timer has be started, make the timerface uneditable
+    if(m_state == COUNTDOWN)
+        QMetaObject::invokeMethod(m_timerFace, "makeUneditable");
+
+
     m_timerEngine.start();
 }
 

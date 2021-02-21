@@ -27,6 +27,30 @@ Rectangle {
         }
     }
 
+    // these functinos also affect the state and are called from the backend (timerinterface)
+    function makeEditable(){
+        state = "editable"
+    }
+
+    function makeUneditable(){
+        state = "uneditable"
+    }
+
+    function arrowUpIncrement(time: string){
+
+        return (Number(time) + 1).toString()
+    }
+
+    function arrowDownDecrement(time: string){
+        if (Number(time) !== 0)
+        {
+            return (Number(time) - 1).toString()
+        }
+        else
+            return 0
+
+    }
+
     states:[
         State {
             name: "uneditable"
@@ -127,6 +151,16 @@ Rectangle {
                 minDisplay.focus = true
                 minDisplay.cursorPosition = 0;
             }
+
+            if(event.key === Qt.Key_Up)
+            {
+                text = arrowUpIncrement(text)
+            }
+
+            if(event.key === Qt.Key_Down)
+            {
+                text = arrowDownDecrement(text)
+            }
         }
     }
 
@@ -186,6 +220,16 @@ Rectangle {
                 secDisplay.focus = true
                 secDisplay.cursorPosition = 0;
             }
+
+            if(event.key === Qt.Key_Up)
+            {
+                text = arrowUpIncrement(text)
+            }
+
+            if(event.key === Qt.Key_Down)
+            {
+                text = arrowDownDecrement(text)
+            }
         }
     }
 
@@ -236,6 +280,17 @@ Rectangle {
             {
                 minDisplay.focus = true
                 minDisplay.cursorPosition = 2;
+            }
+
+            // Arrow keys can change the time
+            if(event.key === Qt.Key_Up)
+            {
+                text = arrowUpIncrement(text)
+            }
+
+            if(event.key === Qt.Key_Down)
+            {
+                text = arrowDownDecrement(text)
             }
         }
     }
